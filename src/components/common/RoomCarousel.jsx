@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import { Card, Carousel, Col, Container, Row } from "react-bootstrap"
 
 const RoomCarousel = () => {
-	const [rooms, setRooms] = useState([{ id: "", roomType: "", roomPrice: "", photo: "" }])
+	/*const [rooms, setRooms] = useState([{ id: "", roomType: "", roomPrice: "", photo: "" }])
 	const [errorMessage, setErrorMessage] = useState("")
 	const [isLoading, setIsLoading] = useState(false)
 
@@ -26,9 +26,10 @@ const RoomCarousel = () => {
 	}
 	if (errorMessage) {
 		return <div className=" text-danger mb-5 mt-5">Error : {errorMessage}</div>
-	}
+		}*/
+	
 
-	return (
+	return (/*
 		<section className="bg-light mb-5 mt-5 shadow">
 			<Link to={"/browse-all-rooms"} className="hote-color text-center">
 				Browse all rooms
@@ -68,8 +69,8 @@ const RoomCarousel = () => {
 					))}
 				</Carousel>
 			</Container>
-		</section>
-	)
+		</section>*/
+	<div></div>)
 }
 
 export default RoomCarousel

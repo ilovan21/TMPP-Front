@@ -19,6 +19,7 @@ import Registration from "./components/auth/Registration"
 import Profile from "./components/auth/Profile"
 import { AuthProvider } from "./components/auth/AuthProvider"
 import RequireAuth from "./components/auth/RequireAuth"
+import AddCabin from "./components/cabins/AddCabin"
 
 function App() {
 	return (
@@ -31,7 +32,7 @@ function App() {
 						<Route path="/edit-room/:roomId" element={<EditRoom />} />
 						<Route path="/existing-rooms" element={<ExistingRooms />} />
 						<Route path="/add-room" element={<AddRoom />} />
-
+						<Route path="/add-cabin" element={<AddCabin/>} />
 						<Route
 							path="/book-room/:roomId"
 							element={

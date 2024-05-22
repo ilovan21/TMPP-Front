@@ -1,32 +1,72 @@
 import axios from "axios"
 
-export const api = axios.create({
-	baseURL: "http://localhost:8088"
-})
+/*export const api = axios.create({
+	baseURL: "http://localhost:8007"
+});*/
 
-export const getHeader = () => {
-	const token = localStorage.getItem("token")
+
+/*export const getHeader = () => {
 	return {
-		Authorization: `Bearer ${token}`,
 		"Content-Type": "application/json"
 	}
+}*/
+export const getHeader = () => {
+    return undefined;
 }
 
-/* This function adds a new room room to the database */
-export async function addRoom(photo, roomType, roomPrice) {
-	const formData = new FormData()
-	formData.append("photo", photo)
-	formData.append("roomType", roomType)
-	formData.append("roomPrice", roomPrice)
+export async function addVipCabin( location, price, isBooked,photo, numberOfRooms, hasPrivatePool, hasJacuzzi, hasSauna) {
+    const formData = new FormData();
+    formData.append("location", location);
+    formData.append("price", price);
+    formData.append("isBooked", isBooked);
+	formData.append("photo", photo);
+    formData.append("numberOfRooms", numberOfRooms);
+    formData.append("hasPrivatePool", hasPrivatePool);
+    formData.append("hasJacuzzi", hasJacuzzi);
+    formData.append("hasSauna", hasSauna);
 
-	const response = await api.post("/rooms/add/new-room", formData,{
-		headers: getHeader()
-	})
-	if (response.status === 201) {
-		return true
-	} else {
-		return false
-	}
+
+		try {
+			const response = await axios.post("http://localhost:8087/cabins/add-vip", formData, {
+				headers: getHeader()
+			});
+        return response.status === 200;
+    } catch (error) {
+        console.error('Error adding VIP cabin:', error);
+        return false;
+    }
+}
+
+export async function addStandardCabin( location, price, isBooked,photo, numberOfRooms, hasFireplace, hasKitchen, hasBathroom) {
+    const formData = new FormData();
+    formData.append("location", location);
+    formData.append("price", price);
+    formData.append("isBooked", isBooked);
+	formData.append("photo", photo);
+    formData.append("numberOfRooms", numberOfRooms);
+    formData.append("hasFireplace", hasFireplace);
+    formData.append("hasKitchen", hasKitchen);
+    formData.append("hasBathroom", hasBathroom);
+
+	try {
+        const response = await axios.post("http://localhost:8087/cabins/add-standard", formData, {
+            headers: getHeader()
+        });
+        return response.status === 200;
+    } catch (error) {
+        console.error('Error adding standard cabin:', error);
+        return false;
+    } }
+export async function addRoom(roomData) {
+    try {
+        const response = await axios.post("/add-room", roomData, {
+            headers: getHeader()
+        });
+        return response.status === 201;
+    } catch (error) {
+        console.error('Error adding room:', error);
+        return false;
+    }
 }
 
 /* This function gets all room types from thee database */

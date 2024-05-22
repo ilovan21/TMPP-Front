@@ -14,10 +14,10 @@ const NavBar = () => {
 	const userRole = localStorage.getItem("userRole")
 
 	return (
-		<nav className="navbar navbar-expand-lg bg-body-tertiary px-5 shadow mt-5 sticky-top">
+		<nav className="navbar navbar-expand-lg bg-body-tertiary px-5 shadow mt-8 sticky-top">
 			<div className="container-fluid">
 				<Link to={"/"} className="navbar-brand">
-					<span className="hotel-color">lakeSide Hotel</span>
+					<span className="hotel-color"> Cabin Getaways</span>
 				</Link>
 
 				<button
@@ -35,17 +35,14 @@ const NavBar = () => {
 					<ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
 						<li className="nav-item">
 							<NavLink className="nav-link" aria-current="page" to={"/browse-all-rooms"}>
-								Browse all rooms
+								Browse all cabins
 							</NavLink>
 						</li>
-
-						{isLoggedIn && userRole === "ROLE_ADMIN" && (
-							<li className="nav-item">
-								<NavLink className="nav-link" aria-current="page" to={"/admin"}>
-									Admin
-								</NavLink>
-							</li>
-						)}
+						<li className="nav-item">
+							<NavLink className="nav-link" to={"/add-cabin"}>
+								Add Cabin
+							</NavLink>
+						</li>
 					</ul>
 
 					<ul className="d-flex navbar-nav">
@@ -54,34 +51,7 @@ const NavBar = () => {
 								Find my booking
 							</NavLink>
 						</li>
-
-						<li className="nav-item dropdown">
-							<a
-								className={`nav-link dropdown-toggle ${showAccount ? "show" : ""}`}
-								href="#"
-								role="button"
-								data-bs-toggle="dropdown"
-								aria-expanded="false"
-								onClick={handleAccountClick}>
-								{" "}
-								Account
-							</a>
-
-							<ul
-								className={`dropdown-menu ${showAccount ? "show" : ""}`}
-								aria-labelledby="navbarDropdown">
-								{isLoggedIn ? (
-									<Logout />
-								) : (
-									<li>
-										<Link className="dropdown-item" to={"/login"}>
-											Login
-										</Link>
-									</li>
-								)}
 							</ul>
-						</li>
-					</ul>
 				</div>
 			</div>
 		</nav>
